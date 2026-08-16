@@ -83,6 +83,21 @@ const CONTENT = {
         da: "En skovbørnehave organiseret som fire pavilloner under saddeltage i træ — vist i isometri, konstruktionsaksonometri og plan. (Rediger gerne denne tekst.)",
         en: "A forest kindergarten organised as four pavilions under pitched timber roofs — shown in isometric, structural axonometric and plan. (Feel free to edit this text.)"
       }
+    },
+
+    {
+      slug: "furniture",
+      title: { da: "Møbler", en: "Furniture" },
+      category: "furniture",
+      meta: { da: "Bord", en: "Table" },
+      cover: "assets/img/furniture-1-thumb.jpg",
+      images: [
+        { src: "furniture-1", caption: { da: "Bord på terrassen", en: "Table on the deck" } }
+      ],
+      body: {
+        da: "Et selvbygget bord i træ, her på terrassen i klitterne. (Rediger gerne denne tekst — fx træsort, mål og hvornår det er lavet.)",
+        en: "A self-built wooden table, here on the deck among the dunes. (Feel free to edit this text — e.g. the wood, dimensions and when you made it.)"
+      }
     }
 
   ],
