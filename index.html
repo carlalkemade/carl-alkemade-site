@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carl Alkemade</title>
+  <meta name="description" content="Carl Alkemade — architecture and art. Portfolio and blog.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" id="site-name" href="#/work">Carl Alkemade</a>
+    <nav class="topnav">
+      <span id="nav-links"></span>
+      <span id="lang-toggle" class="lang"></span>
+    </nav>
+  </header>
+
+  <main id="view" class="view"></main>
+
+  <footer class="footer">
+    <span id="footer-name"></span>
+  </footer>
+
+  <div id="lightbox" class="lightbox"><img alt=""></div>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /* small footer touch, set after content loads */
+    document.getElementById("footer-name").textContent =
+      "© " + new Date().getFullYear() + " " + (CONTENT.siteName || "");
+  </script>
+</body>
+</html>

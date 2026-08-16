@@ -1,0 +1,160 @@
+/* =============================================================================
+   Carl Alkemade — portfolio styles
+   Minimal, white, gallery-like. Colours & sizes are grouped at the top so
+   they're easy to tweak.
+   ========================================================================== */
+:root{
+  --bg:#ffffff;
+  --ink:#141414;
+  --muted:#8a8a8a;
+  --line:#e8e8e8;
+  --line-strong:#cfcfcf;
+  --maxw:1500px;
+  --pad:clamp(18px,4vw,44px);
+  --font:"Helvetica Neue",Helvetica,Arial,"Segoe UI",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ---- Top bar ------------------------------------------------------------- */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  padding:18px var(--pad);
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  font-size:16px;font-weight:600;letter-spacing:.01em;white-space:nowrap;
+}
+.topnav{display:flex;align-items:baseline;gap:22px}
+#nav-links{display:flex;gap:22px}
+#nav-links a{color:var(--muted);font-size:13px;letter-spacing:.02em}
+#nav-links a:hover{color:var(--ink)}
+#nav-links a.active{color:var(--ink)}
+.lang{display:inline-flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}
+.lang button{
+  background:none;border:0;padding:0;margin:0;cursor:pointer;
+  font:inherit;font-size:12px;color:var(--muted);letter-spacing:.03em;
+}
+.lang button.on{color:var(--ink)}
+.lang .sep{color:var(--line-strong)}
+
+/* ---- Layout shell -------------------------------------------------------- */
+.view{
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(20px,3vw,34px) var(--pad) 80px;
+  min-height:60vh;
+}
+.empty{color:var(--muted)}
+
+/* ---- Filter bar ---------------------------------------------------------- */
+.filterbar{
+  display:flex;flex-wrap:wrap;gap:18px;justify-content:flex-end;
+  margin:2px 0 26px;
+}
+.filterbar button{
+  background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  font-size:13px;color:var(--muted);letter-spacing:.02em;
+}
+.filterbar button:hover{color:var(--ink)}
+.filterbar button.on{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+
+/* ---- Project grid -------------------------------------------------------- */
+.grid{
+  display:grid;gap:clamp(22px,3vw,40px);
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+}
+.card{display:block;group:card}
+.card-img{
+  aspect-ratio:4/3;background:#fbfbfb;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  padding:14px;transition:border-color .2s ease;
+}
+.card:hover .card-img{border-color:var(--line-strong)}
+.card-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.card-cap{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:10px}
+.card-title{font-size:14px}
+.card-meta{font-size:12px;color:var(--muted);white-space:nowrap}
+
+/* ---- Project detail ------------------------------------------------------ */
+.project{max-width:1000px;margin:0 auto}
+.back{display:inline-block;color:var(--muted);font-size:13px;margin-bottom:26px}
+.back:hover{color:var(--ink)}
+.project-head h1{font-size:24px;font-weight:600;margin:0 0 4px}
+.project-meta{color:var(--muted);font-size:13px;margin:0 0 22px}
+.project-body{max-width:640px;margin:0 0 40px;color:#333}
+.project-body p{margin:0 0 14px}
+.shots{display:flex;flex-direction:column;gap:clamp(26px,4vw,54px)}
+.shot{margin:0}
+.shot img{
+  width:100%;height:auto;background:#fbfbfb;border:1px solid var(--line);
+  padding:clamp(10px,2vw,26px);cursor:zoom-in;mix-blend-mode:multiply;
+}
+.shot figcaption{margin-top:8px;font-size:12px;color:var(--muted)}
+
+/* ---- Blog ---------------------------------------------------------------- */
+.blog{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+.post-date{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.post-title{font-size:20px;font-weight:600;margin:6px 0 10px}
+.post-body p{margin:0 0 14px;color:#333}
+
+/* ---- Info ---------------------------------------------------------------- */
+.info{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:44px;
+}
+.info h2{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.info-about p{max-width:640px;color:#333;margin:0 0 14px}
+.cv-list,.contact-list{list-style:none;margin:0;padding:0}
+.cv-list li{
+  display:grid;grid-template-columns:120px 1fr;gap:6px 20px;
+  padding:12px 0;border-top:1px solid var(--line);align-items:baseline;
+}
+.cv-period{color:var(--muted);font-size:13px}
+.cv-role{font-size:15px}
+.cv-place{grid-column:2;color:var(--muted);font-size:13px}
+.contact-list li{display:flex;gap:18px;padding:11px 0;border-top:1px solid var(--line)}
+.c-label{width:100px;color:var(--muted);font-size:13px}
+.contact-list a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ---- Footer -------------------------------------------------------------- */
+.footer{
+  max-width:var(--maxw);margin:0 auto;
+  padding:22px var(--pad) 40px;color:var(--muted);font-size:12px;
+  border-top:1px solid var(--line);
+}
+
+/* ---- Lightbox ------------------------------------------------------------ */
+.lightbox{
+  position:fixed;inset:0;z-index:50;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(255,255,255,.97);padding:4vw;cursor:zoom-out;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:92vh;object-fit:contain;mix-blend-mode:multiply}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width:640px){
+  .topbar{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:14px}
+  .topnav{width:100%;justify-content:space-between}
+  .grid{grid-template-columns:1fr 1fr;gap:16px}
+  .card-img{padding:8px}
+  .cv-list li{grid-template-columns:1fr}
+  .cv-place{grid-column:1}
+}
+@media (max-width:420px){
+  .grid{grid-template-columns:1fr}
+}
