@@ -102,9 +102,9 @@ img{display:block;max-width:100%}
 #hovertip{
   position:fixed;left:0;top:0;z-index:60;pointer-events:none;
   transform:translate(14px,16px);
-  background:var(--ink);color:#fff;
+  background:none;color:#e00000;
   font-size:12px;letter-spacing:.02em;line-height:1;
-  padding:6px 9px;white-space:nowrap;
+  padding:0;white-space:nowrap;
   opacity:0;transition:opacity .12s ease;
 }
 #hovertip.show{opacity:1}
