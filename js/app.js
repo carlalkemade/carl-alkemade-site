@@ -121,15 +121,27 @@ function renderProject(slug) {
     img.addEventListener("click", () => openLightbox(img.dataset.full)));
 }
 
-/* ---- Blog ---------------------------------------------------------------- */
+/* ---- Blog (list of links) ------------------------------------------------ */
 function renderBlog() {
-  const posts = CONTENT.posts.map((post) => `
-    <article class="post">
+  const items = CONTENT.posts.map((post) => `
+    <a class="post-link" href="#/b/${encodeURIComponent(post.slug)}">
+      <span class="post-link-title">${esc(t(post.title))}</span>
+      <span class="post-link-date">${esc(fmtDate(post.date))}</span>
+    </a>`).join("");
+  el("view").innerHTML = `<div class="blog-list">${items || `<p class="empty">—</p>`}</div>`;
+}
+
+/* ---- Single blog post ---------------------------------------------------- */
+function renderPost(slug) {
+  const post = CONTENT.posts.find((x) => x.slug === slug);
+  if (!post) { location.hash = "#/blog"; return; }
+  el("view").innerHTML = `
+    <article class="post single">
+      <a class="back" href="#/blog">${esc(t(UI.labels.back))}</a>
       <div class="post-date">${esc(fmtDate(post.date))}</div>
-      <h2 class="post-title">${esc(t(post.title))}</h2>
+      <h1 class="post-title">${esc(t(post.title))}</h1>
       <div class="post-body">${paras(t(post.body))}</div>
-    </article>`).join("");
-  el("view").innerHTML = `<div class="blog">${posts || `<p class="empty">—</p>`}</div>`;
+    </article>`;
 }
 
 /* ---- Info (about / cv / contact) ---------------------------------------- */
@@ -173,6 +185,7 @@ function closeLightbox() { el("lightbox").classList.remove("open"); }
 function currentView() {
   const h = location.hash.replace(/^#\/?/, "");
   if (h.startsWith("p/")) return { view: "project", slug: decodeURIComponent(h.slice(2)) };
+  if (h.startsWith("b/")) return { view: "post", slug: decodeURIComponent(h.slice(2)) };
   if (h === "info") return { view: "info" };
   if (h === "blog") return { view: "blog" };
   return { view: "work" };
@@ -181,6 +194,7 @@ function render() {
   const r = currentView();
   renderHeader(r.view);
   if (r.view === "project") renderProject(r.slug);
+  else if (r.view === "post") renderPost(r.slug);
   else if (r.view === "info") renderInfo();
   else if (r.view === "blog") renderBlog();
   else renderWork();

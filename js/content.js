@@ -121,17 +121,20 @@ const CONTENT = {
 
   /* =======================================================================
      BLOG POSTS
+     The Blog page shows a list of links; clicking a title opens that post.
      Newest post goes at the TOP. To add a post, copy one { } block and
-     change the date, title and body. Use \n\n between paragraphs.
+     change slug (a unique short id), date, title and body.
+     Use \n\n between paragraphs.
      ===================================================================== */
   posts: [
 
     {
+      slug: "introduction",
       date: "2026-08-16",
-      title: { da: "Velkommen", en: "Welcome" },
+      title: { da: "Introduction", en: "Introduction" },
       body: {
-        da: "Velkommen til min side. Her vil jeg løbende dele små opdateringer — nye projekter, ting jeg arbejder på, links og andet jeg finder interessant.\n\nDette er det første indlæg. For at tilføje et nyt, åbner du filen content.js, kopierer denne blok og retter dato, titel og tekst.",
-        en: "Welcome to my site. I'll use this space to post small updates — new projects, things I'm working on, links and other bits I find interesting.\n\nThis is the first post. To add a new one, open content.js, copy this block, and change the date, title and text."
+        da: "123456789",
+        en: "123456789"
       }
     }
 
