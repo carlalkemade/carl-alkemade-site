@@ -59,8 +59,8 @@ const CONTENT = {
       meta: { da: "Studieprojekt", en: "Studio project" },
       cover: "assets/img/murvaerk-1-thumb.jpg",
       images: [
-        { src: "murvaerk-1", caption: { da: "Model, 1:1 afstøbning", en: "Model, 1:1 cast" } },
-        { src: "murvaerk-2", caption: { da: "Aksonometri af forbandt", en: "Axonometric of the bond" } }
+        { src: "murvaerk-1", caption: { da: "Isometrisk håndtegnet forbandt, A1, 1:10", en: "Isometric hand drawn brick bond, A1, 1:10" } },
+        { src: "murvaerk-2", caption: { da: "Muret forbandt, 1:1", en: "Brick bond built, 1:1" } }
       ],
       body: {
         da: "En undersøgelse af murværk: et trappet forbandt tegnet i aksonometri og støbt som 1:1-model. (Rediger gerne denne tekst.)",
