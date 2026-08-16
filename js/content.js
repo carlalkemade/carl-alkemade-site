@@ -87,16 +87,16 @@ const CONTENT = {
 
     {
       slug: "furniture",
-      title: { da: "Møbler", en: "Furniture" },
+      title: { da: "Udendørs spisebord", en: "Outdoors dining table" },
       category: "furniture",
-      meta: { da: "Bord", en: "Table" },
+      meta: { da: "Efter Enzo Mari", en: "After Enzo Mari" },
       cover: "assets/img/furniture-1-thumb.jpg",
       images: [
         { src: "furniture-1", caption: { da: "Bord på terrassen", en: "Table on the deck" } }
       ],
       body: {
-        da: "Et selvbygget bord i træ, her på terrassen i klitterne. (Rediger gerne denne tekst — fx træsort, mål og hvornår det er lavet.)",
-        en: "A self-built wooden table, here on the deck among the dunes. (Feel free to edit this text — e.g. the wood, dimensions and when you made it.)"
+        da: "Udendørs spisebord inspireret af Enzo Mari. Bygget af fyrretræ, søm og bolte.",
+        en: "Outdoors dining table inspired by Enzo Mari. Built with pine, nails and bolts."
       }
     }
 
