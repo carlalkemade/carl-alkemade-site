@@ -89,7 +89,7 @@ const CONTENT = {
       slug: "furniture",
       title: { da: "Udendørs spisebord", en: "Outdoors dining table" },
       category: "furniture",
-      meta: { da: "Efter Enzo Mari", en: "After Enzo Mari" },
+      meta: { da: "", en: "" },
       cover: "assets/img/furniture-1-thumb.jpg",
       images: [
         { src: "furniture-1", caption: { da: "Bord på terrassen", en: "Table on the deck" } }

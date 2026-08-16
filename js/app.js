@@ -111,7 +111,7 @@ function renderProject(slug) {
       <a class="back" href="#/work">${esc(t(UI.labels.back))}</a>
       <header class="project-head">
         <h1>${esc(t(p.title))}</h1>
-        <p class="project-meta">${esc(t(p.meta))} · ${esc(t(UI.filters[p.category]))}</p>
+        <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
       </header>
       <div class="project-body">${paras(t(p.body))}</div>
       <div class="shots">${imgs}</div>
