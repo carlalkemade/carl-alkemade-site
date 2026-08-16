@@ -82,18 +82,30 @@ function renderHeader(view) {
 }
 
 /* ---- Work (projects grid + filters) ------------------------------------- */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function hoverTip() {
+  let tip = document.getElementById("hovertip");
+  if (!tip) { tip = document.createElement("div"); tip.id = "hovertip"; document.body.appendChild(tip); }
+  return tip;
+}
 function renderWork() {
   const filters = FILTER_ORDER.map((f) =>
     `<button data-filter="${f}" class="${f === FILTER ? "on" : ""}">${esc(t(UI.filters[f]))}</button>`
   ).join("");
 
-  // show EVERY image of every (filtered) project; each links to its project
-  const tiles = CONTENT.projects
-    .filter((p) => FILTER === "all" || p.category === FILTER)
+  // projects in random order; show EVERY image of each (filtered) project
+  const projs = shuffle(CONTENT.projects.filter((p) => FILTER === "all" || p.category === FILTER));
+  const tiles = projs
     .flatMap((p) => p.images.map((im) => `
-      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}">
+      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}">
         <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
-        <span class="tile-title">${esc(t(p.title))}</span>
       </a>`)).join("");
 
   el("view").innerHTML = `
@@ -102,6 +114,15 @@ function renderWork() {
 
   el("view").querySelectorAll(".filterbar button").forEach((b) =>
     b.addEventListener("click", () => { FILTER = b.dataset.filter; renderWork(); }));
+
+  // the project title follows the cursor while hovering an image
+  const tip = hoverTip();
+  tip.classList.remove("show");
+  el("view").querySelectorAll(".tile").forEach((tile) => {
+    tile.addEventListener("mouseenter", () => { tip.textContent = tile.dataset.title; tip.classList.add("show"); });
+    tile.addEventListener("mousemove", (e) => { tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; });
+    tile.addEventListener("mouseleave", () => { tip.classList.remove("show"); });
+  });
 }
 
 /* ---- Project detail ------------------------------------------------------ */
@@ -201,6 +222,8 @@ function currentView() {
 }
 function render() {
   const r = currentView();
+  const tp = document.getElementById("hovertip");
+  if (tp) tp.classList.remove("show");
   renderHeader(r.view);
   if (r.view === "project") renderProject(r.slug);
   else if (r.view === "post") renderPost(r.slug);

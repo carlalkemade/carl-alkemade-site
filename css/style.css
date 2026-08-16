@@ -97,13 +97,17 @@ img{display:block;max-width:100%}
 }
 .tile-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
 .tile:hover .tile-imgwrap{border-color:var(--line-strong)}
-.tile-title{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:14px;background:rgba(255,255,255,.82);
-  color:var(--ink);font-size:15px;letter-spacing:.01em;
-  opacity:0;transition:opacity .18s ease;pointer-events:none;
+
+/* project title chip that follows the cursor over an image */
+#hovertip{
+  position:fixed;left:0;top:0;z-index:60;pointer-events:none;
+  transform:translate(14px,16px);
+  background:var(--ink);color:#fff;
+  font-size:12px;letter-spacing:.02em;line-height:1;
+  padding:6px 9px;white-space:nowrap;
+  opacity:0;transition:opacity .12s ease;
 }
-.tile:hover .tile-title{opacity:1}
+#hovertip.show{opacity:1}
 
 /* ---- Project detail ------------------------------------------------------ */
 .project{max-width:1000px;margin:0 auto}
