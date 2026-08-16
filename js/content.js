@@ -90,13 +90,29 @@ const CONTENT = {
       title: { da: "Udendørs spisebord", en: "Outdoors dining table" },
       category: "furniture",
       meta: { da: "", en: "" },
-      cover: "assets/img/furniture-1-thumb.jpg",
+      cover: "assets/img/furniture-2-thumb.jpg",
       images: [
+        { src: "furniture-2", caption: { da: "Dækket op", en: "Set for dinner" } },
         { src: "furniture-1", caption: { da: "Bord på terrassen", en: "Table on the deck" } }
       ],
       body: {
         da: "Udendørs spisebord inspireret af Enzo Mari. Bygget af fyrretræ, søm og bolte.",
         en: "Outdoors dining table inspired by Enzo Mari. Built with pine, nails and bolts."
+      }
+    },
+
+    {
+      slug: "chair",
+      title: { da: "Stol", en: "Chair" },
+      category: "furniture",
+      meta: { da: "", en: "" },
+      cover: "assets/img/furniture-3-thumb.jpg",
+      images: [
+        { src: "furniture-3", caption: { da: "Stol på terrassen", en: "Chair on the deck" } }
+      ],
+      body: {
+        da: "Stol inspireret af Enzo Mari. Bygget af fyrretræ, søm og bolte.",
+        en: "Chair inspired by Enzo Mari. Built with pine, nails and bolts."
       }
     }
 
