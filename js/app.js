@@ -54,13 +54,24 @@ function fmtDate(iso) {
 /* ---- Header -------------------------------------------------------------- */
 function renderHeader(view) {
   el("site-name").textContent = CONTENT.siteName;
-  const nav = [
-    ["work", "#/work"], ["info", "#/info"], ["blog", "#/blog"]
-  ].map(([key, href]) => {
-    const active = (view === key) ? " class='active'" : "";
-    return `<a href="${href}"${active}>${esc(t(UI.nav[key]))}</a>`;
-  }).join("");
-  el("nav-links").innerHTML = nav;
+
+  // Projects nav item = a fold-down list of project titles linking to each project
+  const projLinks = CONTENT.projects.map((p) =>
+    `<a href="#/p/${encodeURIComponent(p.slug)}">${esc(t(p.title))}</a>`).join("");
+  const cls = (on) => on ? " active" : "";
+  el("nav-links").innerHTML = `
+    <span class="navitem" id="proj-nav">
+      <a href="#/work" class="navlink${cls(view === "work" || view === "project")}" data-proj-toggle>${esc(t(UI.nav.work))}</a>
+      <div class="dropdown">${projLinks}</div>
+    </span>
+    <a href="#/info" class="navlink${cls(view === "info")}">${esc(t(UI.nav.info))}</a>
+    <a href="#/blog" class="navlink${cls(view === "blog" || view === "post")}">${esc(t(UI.nav.blog))}</a>`;
+
+  const pn = document.getElementById("proj-nav");
+  pn.querySelector("[data-proj-toggle]").addEventListener("click", (e) => {
+    e.preventDefault();
+    pn.classList.toggle("open");
+  });
 
   el("lang-toggle").innerHTML =
     ["da", "en"].map((l) =>
@@ -76,20 +87,18 @@ function renderWork() {
     `<button data-filter="${f}" class="${f === FILTER ? "on" : ""}">${esc(t(UI.filters[f]))}</button>`
   ).join("");
 
-  const items = CONTENT.projects
+  // show EVERY image of every (filtered) project; each links to its project
+  const tiles = CONTENT.projects
     .filter((p) => FILTER === "all" || p.category === FILTER)
-    .map((p) => `
-      <a class="card" href="#/p/${encodeURIComponent(p.slug)}">
-        <div class="card-img"><img loading="lazy" src="${esc(p.cover)}" alt="${esc(t(p.title))}"></div>
-        <div class="card-cap">
-          <span class="card-title">${esc(t(p.title))}</span>
-          <span class="card-meta">${esc(t(p.meta))}</span>
-        </div>
-      </a>`).join("");
+    .flatMap((p) => p.images.map((im) => `
+      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}">
+        <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
+        <span class="tile-title">${esc(t(p.title))}</span>
+      </a>`)).join("");
 
   el("view").innerHTML = `
     <div class="filterbar">${filters}</div>
-    <div class="grid">${items || `<p class="empty">—</p>`}</div>`;
+    <div class="grid">${tiles || `<p class="empty">—</p>`}</div>`;
 
   el("view").querySelectorAll(".filterbar button").forEach((b) =>
     b.addEventListener("click", () => { FILTER = b.dataset.filter; renderWork(); }));
@@ -206,5 +215,11 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.lang = LANG;
   el("lightbox").addEventListener("click", closeLightbox);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+  // close the Projects fold-down when clicking outside it
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".navitem")) {
+      document.querySelectorAll(".navitem.open").forEach((n) => n.classList.remove("open"));
+    }
+  });
   render();
 });

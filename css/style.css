@@ -52,6 +52,18 @@ img{display:block;max-width:100%}
 .lang button.on{color:var(--ink)}
 .lang .sep{color:var(--line-strong)}
 
+/* Projects fold-down menu */
+.navitem{position:relative;display:inline-flex}
+.dropdown{
+  position:absolute;top:100%;left:0;margin-top:12px;min-width:200px;
+  display:none;flex-direction:column;
+  background:var(--bg);border:1px solid var(--line);padding:6px 0;
+  box-shadow:0 8px 28px rgba(0,0,0,.07);z-index:30;
+}
+.navitem.open .dropdown{display:flex}
+.dropdown a{padding:8px 16px;font-size:13px;color:var(--muted);white-space:nowrap}
+.dropdown a:hover{color:var(--ink);background:#fafafa}
+
 /* ---- Layout shell -------------------------------------------------------- */
 .view{
   max-width:var(--maxw);margin:0 auto;
@@ -72,22 +84,26 @@ img{display:block;max-width:100%}
 .filterbar button:hover{color:var(--ink)}
 .filterbar button.on{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 
-/* ---- Project grid -------------------------------------------------------- */
+/* ---- Project grid (all images; hover shows the project title) ------------ */
 .grid{
-  display:grid;gap:clamp(22px,3vw,40px);
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  display:grid;gap:clamp(14px,2vw,26px);
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
 }
-.card{display:block;group:card}
-.card-img{
-  aspect-ratio:4/3;background:#fbfbfb;border:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  padding:14px;transition:border-color .2s ease;
+.tile{position:relative;display:block}
+.tile-imgwrap{
+  display:flex;aspect-ratio:4/3;background:#fbfbfb;border:1px solid var(--line);
+  align-items:center;justify-content:center;overflow:hidden;padding:14px;
+  transition:border-color .2s ease;
 }
-.card:hover .card-img{border-color:var(--line-strong)}
-.card-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
-.card-cap{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:10px}
-.card-title{font-size:14px}
-.card-meta{font-size:12px;color:var(--muted);white-space:nowrap}
+.tile-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.tile:hover .tile-imgwrap{border-color:var(--line-strong)}
+.tile-title{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:14px;background:rgba(255,255,255,.82);
+  color:var(--ink);font-size:15px;letter-spacing:.01em;
+  opacity:0;transition:opacity .18s ease;pointer-events:none;
+}
+.tile:hover .tile-title{opacity:1}
 
 /* ---- Project detail ------------------------------------------------------ */
 .project{max-width:1000px;margin:0 auto}
