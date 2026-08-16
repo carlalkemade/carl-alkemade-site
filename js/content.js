@@ -77,7 +77,8 @@ const CONTENT = {
       images: [
         { src: "skov-1", caption: { da: "Isometri", en: "Isometric" } },
         { src: "skov-2", caption: { da: "Trækonstruktion", en: "Timber structure" } },
-        { src: "skov-3", caption: { da: "Plan", en: "Plan" } }
+        { src: "skov-3", caption: { da: "Plan", en: "Plan" } },
+        { src: "skov-4", caption: { da: "Situationsmodel — laserskåret og spraymalet", en: "Site model — laser-cut and spray-painted" } }
       ],
       body: {
         da: "En skovbørnehave organiseret som fire pavilloner under saddeltage i træ — vist i isometri, konstruktionsaksonometri og plan. (Rediger gerne denne tekst.)",
