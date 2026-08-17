@@ -100,11 +100,15 @@ img{display:block;max-width:100%}
 }
 .tile-imgwrap img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
 .tile:hover .tile-imgwrap{border-color:var(--line-strong)}
+/* click a grid image: it enlarges ~20% in place, rest of the site still visible */
+.tile-imgwrap{transition:border-color .2s ease, transform .18s ease, box-shadow .18s ease}
+.tile.zoomed{z-index:40}
+.tile.zoomed .tile-imgwrap{transform:scale(1.2);box-shadow:0 12px 40px rgba(0,0,0,.14);background:#fff}
 
 /* project title chip that follows the cursor over an image */
 #hovertip{
   position:fixed;left:0;top:0;z-index:60;pointer-events:none;
-  transform:translate(13px,calc(-50% + 9px));
+  transform:translate(11px,11px);
   background:none;color:#e00000;
   font-size:12px;letter-spacing:.02em;line-height:1;
   padding:0;white-space:nowrap;

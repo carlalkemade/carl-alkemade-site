@@ -170,10 +170,10 @@ const CONTENT = {
       en: "A short intro — write a couple of lines about your background and what you work with. (Edit this text in content.js.)"
     },
 
-    /* CV / experience. Each entry = { period, title:{da,en}, place:{da,en} } */
+    /* CV / experience. Each entry = { period, title:{da,en}, place:{da,en} }
+       period can be a plain string OR bilingual { da, en }. Copy a line to add more. */
     cv: [
-      { period: "20XX–20XX", title: { da: "Uddannelse", en: "Education" }, place: { da: "Skole / by", en: "School / city" } },
-      { period: "20XX–20XX", title: { da: "Stilling", en: "Position" }, place: { da: "Tegnestue / by", en: "Studio / city" } }
+      { period: { da: "2025–nu", en: "2025–present" }, title: { da: "Det Kongelige Akademi", en: "Royal Danish Academy" }, place: { da: "Studerende", en: "Student" } }
     ],
 
     /* Contact links. Remove any you don't want; add more the same way. */

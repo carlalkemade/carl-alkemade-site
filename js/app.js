@@ -26,6 +26,7 @@ let LANG = (function () {
   try { return localStorage.getItem("lang") || "da"; } catch (e) { return "da"; }
 })();
 let FILTER = "all";
+let ZOOMED = null;   // the currently enlarged grid tile (front page)
 
 function setLang(l) {
   LANG = l;
@@ -105,6 +106,9 @@ function hoverTip() {
   if (!tip) { tip = document.createElement("div"); tip.id = "hovertip"; document.body.appendChild(tip); }
   return tip;
 }
+function clearZoom() {
+  if (ZOOMED) { ZOOMED.classList.remove("zoomed"); ZOOMED = null; }
+}
 function renderWork() {
   const filters = FILTER_ORDER.map((f) =>
     `<button data-filter="${f}" class="${f === FILTER ? "on" : ""}">${esc(t(UI.filters[f]))}</button>`
@@ -128,15 +132,22 @@ function renderWork() {
   // the project title follows the cursor while hovering an image
   const tip = hoverTip();
   tip.classList.remove("show");
+  ZOOMED = null;
   el("view").querySelectorAll(".tile").forEach((tile) => {
     tile.addEventListener("mouseenter", () => { tip.textContent = tile.dataset.title; tip.classList.add("show"); });
     tile.addEventListener("mousemove", (e) => { tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; });
     tile.addEventListener("mouseleave", () => { tip.classList.remove("show"); });
-    // 1st click enlarges the image; clicking the enlarged image opens the project
+    // 1st click enlarges the image ~20% in place; clicking it again opens the project
     tile.addEventListener("click", (e) => {
       e.preventDefault();
-      tip.classList.remove("show");
-      openLightbox(tile.dataset.full, tile.getAttribute("href"));
+      if (tile.classList.contains("zoomed")) {
+        location.hash = tile.getAttribute("href");
+      } else {
+        clearZoom();
+        tile.classList.add("zoomed");
+        ZOOMED = tile;
+        tip.classList.remove("show");
+      }
     });
   });
 }
@@ -196,7 +207,7 @@ function renderPost(slug) {
 function renderInfo() {
   const info = CONTENT.info;
   const cv = info.cv.map((e) => `
-    <li><span class="cv-period">${esc(e.period)}</span>
+    <li><span class="cv-period">${esc(typeof e.period === "string" ? e.period : t(e.period))}</span>
         <span class="cv-role">${esc(t(e.title))}</span>
         <span class="cv-place">${esc(t(e.place))}</span></li>`).join("");
   const contact = info.contact.map((c) =>
@@ -268,6 +279,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!e.target.closest(".navitem")) {
       document.querySelectorAll(".navitem.open").forEach((n) => n.classList.remove("open"));
     }
+    if (!e.target.closest(".tile")) clearZoom();  // un-enlarge when clicking elsewhere
   });
   render();
 });
