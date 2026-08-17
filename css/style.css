@@ -91,7 +91,7 @@ img{display:block;max-width:100%}
 }
 .tile{
   position:relative;display:block;
-  cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20stroke='%23e00000'%20stroke-width='2'%20stroke-linecap='round'%3E%3Cline%20x1='16'%20y1='3'%20x2='16'%20y2='29'/%3E%3Cline%20x1='3'%20y1='16'%20x2='29'%20y2='16'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair;
+  cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20stroke='%23e00000'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='16'%20y1='3'%20x2='16'%20y2='29'/%3E%3Cline%20x1='3'%20y1='16'%20x2='29'%20y2='16'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair;
 }
 .tile-imgwrap{
   display:flex;aspect-ratio:4/3;background:#fbfbfb;border:1px solid var(--line);
@@ -104,7 +104,7 @@ img{display:block;max-width:100%}
 /* project title chip that follows the cursor over an image */
 #hovertip{
   position:fixed;left:0;top:0;z-index:60;pointer-events:none;
-  transform:translate(13px,-50%);
+  transform:translate(13px,calc(-50% + 9px));
   background:none;color:#e00000;
   font-size:12px;letter-spacing:.02em;line-height:1;
   padding:0;white-space:nowrap;

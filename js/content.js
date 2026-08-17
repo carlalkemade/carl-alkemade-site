@@ -116,6 +116,26 @@ const CONTENT = {
         da: "Stol inspireret af Enzo Mari. Bygget af fyrretræ, søm og bolte.",
         en: "Chair inspired by Enzo Mari. Built with pine, nails and bolts."
       }
+    },
+
+    {
+      slug: "blue-house",
+      title: { da: "Volumenstudier, Blue House", en: "Volume studies, Blue House" },
+      category: "plaster",
+      meta: { da: "Gips · 1:50 · 2025", en: "Plaster · 1:50 · 2025" },
+      cover: "assets/img/plaster-4-thumb.jpg",
+      images: [
+        { src: "plaster-4", caption: { da: "", en: "" } },
+        { src: "plaster-6", caption: { da: "", en: "" } },
+        { src: "plaster-5", caption: { da: "", en: "" } },
+        { src: "plaster-2", caption: { da: "", en: "" } },
+        { src: "plaster-3", caption: { da: "", en: "" } },
+        { src: "plaster-1", caption: { da: "", en: "" } }
+      ],
+      body: {
+        da: "Volumenstudier af Blue House af Herzog & de Meuron. Gips, 1:50, 2025.",
+        en: "Volume studies of Blue House by Herzog & de Meuron. Plaster, 1:50, 2025."
+      }
     }
 
   ],
