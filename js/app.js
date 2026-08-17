@@ -114,7 +114,7 @@ function renderWork() {
   const projs = shuffle(CONTENT.projects.filter((p) => FILTER === "all" || p.category === FILTER));
   const tiles = projs
     .flatMap((p) => p.images.map((im) => `
-      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}">
+      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
         <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
       </a>`)).join("");
 
@@ -132,6 +132,12 @@ function renderWork() {
     tile.addEventListener("mouseenter", () => { tip.textContent = tile.dataset.title; tip.classList.add("show"); });
     tile.addEventListener("mousemove", (e) => { tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; });
     tile.addEventListener("mouseleave", () => { tip.classList.remove("show"); });
+    // 1st click enlarges the image; clicking the enlarged image opens the project
+    tile.addEventListener("click", (e) => {
+      e.preventDefault();
+      tip.classList.remove("show");
+      openLightbox(tile.dataset.full, tile.getAttribute("href"));
+    });
   });
 }
 
@@ -149,12 +155,14 @@ function renderProject(slug) {
   el("view").innerHTML = `
     <article class="project">
       <a class="back" href="#/work">${esc(t(UI.labels.back))}</a>
-      <header class="project-head">
-        <h1>${esc(t(p.title))}</h1>
-        <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
-      </header>
-      <div class="project-body">${paras(t(p.body))}</div>
-      <div class="shots">${imgs}</div>
+      <div class="project-layout">
+        <div class="shots">${imgs}</div>
+        <aside class="project-side">
+          <h1>${esc(t(p.title))}</h1>
+          <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
+          <div class="project-body">${paras(t(p.body))}</div>
+        </aside>
+      </div>
     </article>`;
 
   el("view").querySelectorAll(".shot img").forEach((img) =>
@@ -214,12 +222,19 @@ function renderInfo() {
 }
 
 /* ---- Lightbox ------------------------------------------------------------ */
-function openLightbox(src) {
+let LB_TARGET = null;
+function openLightbox(src, target) {
   const lb = el("lightbox");
   lb.querySelector("img").src = src;
+  LB_TARGET = target || null;
+  const tp = document.getElementById("hovertip"); if (tp) tp.classList.remove("show");
   lb.classList.add("open");
 }
-function closeLightbox() { el("lightbox").classList.remove("open"); }
+function closeLightbox() { el("lightbox").classList.remove("open"); LB_TARGET = null; }
+function lightboxClick() {
+  if (LB_TARGET) { const h = LB_TARGET; closeLightbox(); location.hash = h; }
+  else closeLightbox();
+}
 
 /* ---- Router -------------------------------------------------------------- */
 function currentView() {
@@ -246,7 +261,7 @@ function render() {
 window.addEventListener("hashchange", render);
 window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.lang = LANG;
-  el("lightbox").addEventListener("click", closeLightbox);
+  el("lightbox").addEventListener("click", lightboxClick);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
   // close the Projects fold-down when clicking outside it
   document.addEventListener("click", (e) => {
