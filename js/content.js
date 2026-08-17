@@ -44,7 +44,8 @@ const CONTENT = {
       images: [
         { src: "kiosk-1", caption: { da: "Aksonometri", en: "Axonometric" } },
         { src: "kiosk-2", caption: { da: "Snitperspektiv", en: "Section perspective" } },
-        { src: "kiosk-3", caption: { da: "Interiørperspektiv", en: "Interior perspective" } }
+        { src: "kiosk-3", caption: { da: "Interiørperspektiv", en: "Interior perspective" } },
+        { src: "kiosk-4", caption: { da: "Opmålingsskitse", en: "Measurement sketch" } }
       ],
       body: {
         da: "En lille kiosk og et étværelses hotel, undersøgt gennem håndtegninger — aksonometri, snit og interiørperspektiv. (Rediger gerne denne tekst.)",
