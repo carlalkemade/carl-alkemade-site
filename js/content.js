@@ -32,6 +32,7 @@ const CONTENT = {
        images   : list of images shown on the project page (first = big)
                   each image: { src, caption:{da,en} }
        body     : the description paragraph(s) (da/en)
+       specs    : the info grid — year, material, scale (values: text or {da,en}; "" hides a row)
      ===================================================================== */
   projects: [
 
@@ -41,6 +42,7 @@ const CONTENT = {
       category: "architecture",
       meta: { da: "Studieprojekt", en: "Studio project" },
       cover: "assets/img/kiosk-1-thumb.jpg",
+      specs: { year: "", material: { da: "", en: "" }, scale: "" },
       images: [
         { src: "kiosk-1", caption: { da: "Aksonometri", en: "Axonometric" } },
         { src: "kiosk-2", caption: { da: "Snitperspektiv", en: "Section perspective" } },
@@ -59,6 +61,7 @@ const CONTENT = {
       category: "architecture",
       meta: { da: "Studieprojekt", en: "Studio project" },
       cover: "assets/img/murvaerk-1-thumb.jpg",
+      specs: { year: "", material: { da: "Tegl", en: "Brick" }, scale: "1:10 / 1:1" },
       images: [
         { src: "murvaerk-1", caption: { da: "Isometrisk håndtegnet forbandt, A1, 1:10", en: "Isometric hand drawn brick bond, A1, 1:10" } },
         { src: "murvaerk-2", caption: { da: "Muret forbandt, 1:1", en: "Brick bond built, 1:1" } }
@@ -75,6 +78,7 @@ const CONTENT = {
       category: "architecture",
       meta: { da: "Studieprojekt", en: "Studio project" },
       cover: "assets/img/skov-1-thumb.jpg",
+      specs: { year: "", material: { da: "", en: "" }, scale: "" },
       images: [
         { src: "skov-1", caption: { da: "Isometri", en: "Isometric" } },
         { src: "skov-2", caption: { da: "Trækonstruktion", en: "Timber structure" } },
@@ -93,6 +97,7 @@ const CONTENT = {
       category: "furniture",
       meta: { da: "", en: "" },
       cover: "assets/img/furniture-2-thumb.jpg",
+      specs: { year: "", material: { da: "Fyrretræ", en: "Pine" }, scale: "" },
       images: [
         { src: "furniture-2", caption: { da: "Dækket op", en: "Set for dinner" } },
         { src: "furniture-1", caption: { da: "Bord på terrassen", en: "Table on the deck" } }
@@ -109,6 +114,7 @@ const CONTENT = {
       category: "furniture",
       meta: { da: "", en: "" },
       cover: "assets/img/furniture-3-thumb.jpg",
+      specs: { year: "", material: { da: "Fyrretræ", en: "Pine" }, scale: "" },
       images: [
         { src: "furniture-3", caption: { da: "Stol på terrassen", en: "Chair on the deck" } }
       ],
@@ -122,8 +128,9 @@ const CONTENT = {
       slug: "blue-house",
       title: { da: "Volumenstudier, Blue House", en: "Volume studies, Blue House" },
       category: "plaster",
-      meta: { da: "Gips · 1:50 · 2025", en: "Plaster · 1:50 · 2025" },
+      meta: { da: "", en: "" },
       cover: "assets/img/plaster-4-thumb.jpg",
+      specs: { year: "2025", material: { da: "Gips", en: "Plaster" }, scale: "1:50" },
       images: [
         { src: "plaster-4", caption: { da: "", en: "" } },
         { src: "plaster-6", caption: { da: "", en: "" } },

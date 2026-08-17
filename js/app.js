@@ -16,7 +16,10 @@ const UI = {
   labels:  { about:   { da: "Om",       en: "About" },
              cv:      { da: "CV",       en: "CV" },
              contact: { da: "Kontakt",  en: "Contact" },
-             back:    { da: "← Tilbage", en: "← Back" } }
+             back:    { da: "← Tilbage", en: "← Back" } },
+  specs:   { year:     { da: "År",        en: "Year" },
+             material: { da: "Materiale", en: "Material" },
+             scale:    { da: "Målestok",  en: "Scale" } }
 };
 
 const FILTER_ORDER = ["all", "architecture", "plaster", "furniture"];
@@ -163,6 +166,16 @@ function renderProject(slug) {
       ${t(im.caption) ? `<figcaption>${esc(t(im.caption))}</figcaption>` : ""}
     </figure>`).join("");
 
+  // info grid: year / material / scale (rows with an empty value are hidden)
+  const SPEC_KEYS = ["year", "material", "scale"];
+  const specVal = (v) => (v && typeof v === "object") ? t(v) : (v || "");
+  const specRows = (p.specs ? SPEC_KEYS : [])
+    .map((k) => [k, specVal(p.specs[k])])
+    .filter(([, v]) => v)
+    .map(([k, v]) => `<div class="spec"><dt>${esc(t(UI.specs[k]))}</dt><dd>${esc(v)}</dd></div>`)
+    .join("");
+  const specsHtml = specRows ? `<dl class="specs">${specRows}</dl>` : "";
+
   el("view").innerHTML = `
     <article class="project">
       <a class="back" href="#/work">${esc(t(UI.labels.back))}</a>
@@ -172,6 +185,7 @@ function renderProject(slug) {
           <h1>${esc(t(p.title))}</h1>
           <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
           <div class="project-body">${paras(t(p.body))}</div>
+          ${specsHtml}
         </aside>
       </div>
     </article>`;
