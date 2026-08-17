@@ -179,15 +179,13 @@ function renderProject(slug) {
   el("view").innerHTML = `
     <article class="project">
       <a class="back" href="#/work">${esc(t(UI.labels.back))}</a>
-      <div class="project-layout">
-        <div class="shots">${imgs}</div>
-        <aside class="project-side">
-          <h1>${esc(t(p.title))}</h1>
-          <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
-          <div class="project-body">${paras(t(p.body))}</div>
-          ${specsHtml}
-        </aside>
-      </div>
+      <header class="project-head">
+        <h1>${esc(t(p.title))}</h1>
+        <p class="project-meta">${esc([t(p.meta), t(UI.filters[p.category])].filter(Boolean).join(" · "))}</p>
+      </header>
+      <div class="shots">${imgs}</div>
+      ${specsHtml}
+      <div class="project-body">${paras(t(p.body))}</div>
     </article>`;
 
   el("view").querySelectorAll(".shot img").forEach((img) =>
