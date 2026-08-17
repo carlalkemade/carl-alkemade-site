@@ -122,8 +122,8 @@ function tileSize(i) {
     x ^= x >>> 13; x = Math.imul(x, 0x5bd1e995); x ^= x >>> 15;
     return ((x >>> 0) % 100000) / 100000;
   };
-  const cs = rnd(1) < 0.30 ? 2 : 1;
-  const heights = cs === 2 ? [3, 4, 5] : [3, 4, 5, 6];
+  const cs = rnd(1) < 0.33 ? 2 : 1;
+  const heights = cs === 2 ? [3, 4, 5] : [2, 3, 4, 5, 6];
   const rs = heights[Math.floor(rnd(2) * heights.length)];
   return [cs, rs];
 }
