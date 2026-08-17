@@ -59,9 +59,14 @@ function fmtDate(iso) {
 function renderHeader(view) {
   el("site-name").textContent = CONTENT.siteName;
 
-  // Projects nav item = a fold-down list of project titles linking to each project
-  const projLinks = CONTENT.projects.map((p) =>
-    `<a href="#/p/${encodeURIComponent(p.slug)}">${esc(t(p.title))}</a>`).join("");
+  // Projects nav item = a fold-down list, grouped by category (no box)
+  const projLinks = ["architecture", "plaster", "furniture"].map((c) => {
+    const items = CONTENT.projects.filter((p) => p.category === c);
+    if (!items.length) return "";
+    return `<div class="dropdown-group"><span class="dropdown-cat">${esc(t(UI.filters[c]))}</span>` +
+      items.map((p) => `<a href="#/p/${encodeURIComponent(p.slug)}">${esc(t(p.title))}</a>`).join("") +
+      `</div>`;
+  }).join("");
   const cls = (on) => on ? " active" : "";
   el("nav-links").innerHTML = `
     <span class="navitem" id="proj-nav">
@@ -109,6 +114,19 @@ function hoverTip() {
   if (!tip) { tip = document.createElement("div"); tip.id = "hovertip"; document.body.appendChild(tip); }
   return tip;
 }
+// deterministic per-index tile size → a fixed but random-looking mosaic
+// (col span 1 or 2, plus a varied row span). Same on every visit.
+function tileSize(i) {
+  const rnd = (n) => {
+    let x = Math.imul(((i + 1) * 2654435761) ^ ((n + 1) * (SHUFFLE_SEED + 1)), 40503);
+    x ^= x >>> 13; x = Math.imul(x, 0x5bd1e995); x ^= x >>> 15;
+    return ((x >>> 0) % 100000) / 100000;
+  };
+  const cs = rnd(1) < 0.30 ? 2 : 1;
+  const heights = cs === 2 ? [3, 4, 5] : [3, 4, 5, 6];
+  const rs = heights[Math.floor(rnd(2) * heights.length)];
+  return [cs, rs];
+}
 function clearZoom() {
   if (ZOOMED) { ZOOMED.classList.remove("zoomed"); ZOOMED = null; }
 }
@@ -117,13 +135,16 @@ function renderWork() {
     `<button data-filter="${f}" class="${f === FILTER ? "on" : ""}">${esc(t(UI.filters[f]))}</button>`
   ).join("");
 
-  // projects in random order; show EVERY image of each (filtered) project
+  // projects in random order; show EVERY image, in a varied-size mosaic
   const projs = shuffle(CONTENT.projects.filter((p) => FILTER === "all" || p.category === FILTER));
-  const tiles = projs
-    .flatMap((p) => p.images.map((im) => `
-      <a class="tile" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
+  const items = projs.flatMap((p) => p.images.map((im) => ({ p, im })));
+  const tiles = items.map(({ p, im }, i) => {
+    const [cs, rs] = tileSize(i);
+    return `
+      <a class="tile" style="grid-column:span ${cs};grid-row:span ${rs}" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
         <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
-      </a>`)).join("");
+      </a>`;
+  }).join("");
 
   el("view").innerHTML = `
     <div class="filterbar">${filters}</div>
