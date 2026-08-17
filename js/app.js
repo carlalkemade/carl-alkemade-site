@@ -93,7 +93,7 @@ function renderHeader(view) {
 /* ---- Work (projects grid + filters) ------------------------------------- */
 // Fixed "random" order: a seeded shuffle, so the arrangement is scrambled
 // but identical on every visit/refresh. Change SHUFFLE_SEED to reshuffle.
-const SHUFFLE_SEED = 20260816;
+const SHUFFLE_SEED = 748213;
 function shuffle(arr) {
   const a = arr.slice();
   let s = SHUFFLE_SEED >>> 0;
