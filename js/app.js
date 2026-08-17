@@ -123,7 +123,7 @@ function tileSize(i) {
     return ((x >>> 0) % 100000) / 100000;
   };
   const cs = rnd(1) < 0.33 ? 2 : 1;
-  const heights = cs === 2 ? [3, 4, 5] : [2, 3, 4, 5, 6];
+  const heights = cs === 2 ? [3, 4, 5] : [2, 3, 4, 5];
   const rs = heights[Math.floor(rnd(2) * heights.length)];
   return [cs, rs];
 }
@@ -135,13 +135,16 @@ function renderWork() {
     `<button data-filter="${f}" class="${f === FILTER ? "on" : ""}">${esc(t(UI.filters[f]))}</button>`
   ).join("");
 
-  // projects in random order; show EVERY image, in a varied-size mosaic
-  const projs = shuffle(CONTENT.projects.filter((p) => FILTER === "all" || p.category === FILTER));
-  const items = projs.flatMap((p) => p.images.map((im) => ({ p, im })));
+  // EVERY image of every (filtered) project, interspersed in a fixed random order
+  const all = CONTENT.projects
+    .filter((p) => FILTER === "all" || p.category === FILTER)
+    .flatMap((p) => p.images.map((im) => ({ p, im })));
+  const items = shuffle(all);
   const tiles = items.map(({ p, im }, i) => {
     const [cs, rs] = tileSize(i);
+    const zoom = Math.min(2.3, Math.max(1.35, 3.6 / Math.sqrt(cs * rs))).toFixed(2);
     return `
-      <a class="tile" style="grid-column:span ${cs};grid-row:span ${rs}" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
+      <a class="tile" style="grid-column:span ${cs};grid-row:span ${rs};--zoom:${zoom}" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
         <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
       </a>`;
   }).join("");
