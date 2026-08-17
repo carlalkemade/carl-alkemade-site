@@ -82,7 +82,10 @@ const CONTENT = {
         { src: "skov-4", caption: { da: "Situationsmodel — laserskåret og spraymalet", en: "Site model — laser-cut and spray-painted" } }
       ],
       body: {
-        da: "Skovbørnehave i pinseskoven. Stærkt inspireret af Katsura Imperial Villa i Kyoto, som jeg har beskæftiget mig meget med i månederne op til dette projekt. Hovedideen er, at de forskellige dele af rumprogrammet forskyder sig og danner rektangulære forskydninger hvor man kan gemme sig og lege. Det danner forskellige zoner for leg, som orienterer sig mod forskellige dele af naturen. Disse forskydninger skaber en mere intim forbindelse til naturen, fordi man kan betragte den fra små trygge lommer. Jeg har været meget inspireret af Niels Bohrs pavillon og Glenn Murcutts Marika-Alderton House, fordi jeg ville implementere muligheden for at åbne og lukke bygningsdelene. Det er en del af oplevelsen ved børnehaven, at man åbner den ved ankomst, så bygningens udrtyk ændres, og børnene kan genkende, at bygningen er i brug.
+        da: "Skovbørnehave i pinseskoven. Stærkt inspireret af Katsura Imperial Villa i Kyoto, som jeg har beskæftiget mig meget med i månederne op til dette projekt. Hovedideen er, at de forskellige dele af rumprogrammet forskyder sig og danner rektangulære forskydninger hvor man kan gemme sig og lege. Det danner forskellige zoner for leg, som orienterer sig mod forskellige dele af naturen. Disse forskydninger skaber en mere intim forbindelse til naturen, fordi man kan betragte den fra små trygge lommer. Jeg har været meget inspireret af Niels Bohrs pavillon og Glenn Murcutts Marika-Alderton House, fordi jeg ville implementere muligheden for at åbne og lukke bygningsdelene. Det er en del af oplevelsen ved børnehaven, at man åbner den ved ankomst, så bygningens udtryk ændres, og børnene kan genkende, at bygningen er i brug.",
+        en: "A forest kindergarten in Pinseskoven. Strongly inspired by the Katsura Imperial Villa in Kyoto, which I studied closely in the months leading up to this project. The main idea is that the different parts of the room programme shift relative to one another, forming rectangular offsets where you can hide and play. These create different zones for play, each oriented toward a different part of nature. The offsets build a more intimate connection to nature, because you observe it from small, sheltered pockets. I was also strongly inspired by Niels Bohr's pavilion and Glenn Murcutt's Marika-Alderton House, as I wanted to build in the ability to open and close the parts of the building. It is part of the experience of the kindergarten that you open it on arrival, so the building's expression changes and the children can recognise that it is in use."
+      }
+    },
 
     {
       slug: "furniture",
@@ -164,7 +167,7 @@ const CONTENT = {
   info: {
     about: {
       da: "Denne hjemmeside er en slags løs portfolio, hvor jeg viser nogle af de ting jeg har lavet. Det vil være en blanding af skole- og fritidsprojekter. Den opdateres løbende.",
-      en: "A short intro — write a couple of lines about your background and what you work with. (Edit this text in content.js.)"
+      en: "This website is a kind of loose portfolio where I show some of the things I've made. It's a mix of school and personal projects, and it's updated regularly."
     },
 
     /* CV / experience. Each entry = { period, title:{da,en}, place:{da,en} }

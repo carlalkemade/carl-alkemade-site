@@ -103,7 +103,7 @@ img{display:block;max-width:100%}
 /* click a grid image: it enlarges ~20% in place, rest of the site still visible */
 .tile-imgwrap{transition:border-color .2s ease, transform .18s ease, box-shadow .18s ease}
 .tile.zoomed{z-index:40}
-.tile.zoomed .tile-imgwrap{transform:scale(1.2);box-shadow:0 12px 40px rgba(0,0,0,.14);background:#fff}
+.tile.zoomed .tile-imgwrap{transform:scale(1.5);box-shadow:0 12px 40px rgba(0,0,0,.14);background:#fff}
 
 /* project title chip that follows the cursor over an image */
 #hovertip{
