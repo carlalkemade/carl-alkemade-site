@@ -82,10 +82,7 @@ const CONTENT = {
         { src: "skov-4", caption: { da: "Situationsmodel — laserskåret og spraymalet", en: "Site model — laser-cut and spray-painted" } }
       ],
       body: {
-        da: "En skovbørnehave organiseret som fire pavilloner under saddeltage i træ — vist i isometri, konstruktionsaksonometri og plan. (Rediger gerne denne tekst.)",
-        en: "A forest kindergarten organised as four pavilions under pitched timber roofs — shown in isometric, structural axonometric and plan. (Feel free to edit this text.)"
-      }
-    },
+        da: "Skovbørnehave i pinseskoven. Stærkt inspireret af Katsura Imperial Villa i Kyoto, som jeg har beskæftiget mig meget med i månederne op til dette projekt. Hovedideen er, at de forskellige dele af rumprogrammet forskyder sig og danner rektangulære forskydninger hvor man kan gemme sig og lege. Det danner forskellige zoner for leg, som orienterer sig mod forskellige dele af naturen. Disse forskydninger skaber en mere intim forbindelse til naturen, fordi man kan betragte den fra små trygge lommer. Jeg har været meget inspireret af Niels Bohrs pavillon og Glenn Murcutts Marika-Alderton House, fordi jeg ville implementere muligheden for at åbne og lukke bygningsdelene. Det er en del af oplevelsen ved børnehaven, at man åbner den ved ankomst, så bygningens udrtyk ændres, og børnene kan genkende, at bygningen er i brug.
 
     {
       slug: "furniture",
@@ -113,8 +110,8 @@ const CONTENT = {
         { src: "furniture-3", caption: { da: "Stol på terrassen", en: "Chair on the deck" } }
       ],
       body: {
-        da: "Stol inspireret af Enzo Mari. Bygget af fyrretræ, søm og bolte.",
-        en: "Chair inspired by Enzo Mari. Built with pine, nails and bolts."
+        da: "Stol inspireret af Enzo Mari. Bygget af fyrretræ, søm.",
+        en: "Chair inspired by Enzo Mari. Built with pine, nails."
       }
     },
 
@@ -133,8 +130,8 @@ const CONTENT = {
         { src: "plaster-1", caption: { da: "", en: "" } }
       ],
       body: {
-        da: "Volumenstudier af Blue House af Herzog & de Meuron. Gips, 1:50, 2025.",
-        en: "Volume studies of Blue House by Herzog & de Meuron. Plaster, 1:50, 2025."
+        da: "Volumenstudier af Blue House tegnet af Herzog & de Meuron. Gips, 1:50, 2025.",
+        en: "Volume studies of Blue House drawn by Herzog & de Meuron. Plaster, 1:50, 2025."
       }
     }
 
@@ -150,7 +147,7 @@ const CONTENT = {
   posts: [
 
     {
-      slug: "introduction",
+      slug: "Introduction til bloggen",
       date: "2026-08-16",
       title: { da: "Introduction", en: "Introduction" },
       body: {
@@ -173,7 +170,7 @@ const CONTENT = {
     /* CV / experience. Each entry = { period, title:{da,en}, place:{da,en} }
        period can be a plain string OR bilingual { da, en }. Copy a line to add more. */
     cv: [
-      { period: { da: "2025–nu", en: "2025–present" }, title: { da: "Det Kongelige Akademi", en: "Royal Danish Academy" }, place: { da: "Studerende", en: "Student" } }
+      { period: { da: "2025–nu", en: "2025 – present" }, title: { da: "Det Kongelige Akademi", en: "Royal Danish Academy" }, place: { da: "Studerende", en: "Student" } }
     ],
 
     /* Contact links. Remove any you don't want; add more the same way. */
