@@ -166,7 +166,7 @@ const CONTENT = {
      ===================================================================== */
   info: {
     about: {
-      da: "Kort om mig — skriv et par linjer om din baggrund og hvad du arbejder med. (Rediger denne tekst i content.js.) 1234",
+      da: "Denne hjemmeside er en slags løs portfolio, hvor jeg viser nogle af de ting jeg har lavet. Det vil være en blanding af skole- og fritidsprojekter. Den opdateres løbende.",
       en: "A short intro — write a couple of lines about your background and what you work with. (Edit this text in content.js.)"
     },
 
