@@ -11,7 +11,7 @@
   --line-strong:#cfcfcf;
   --maxw:1500px;
   --pad:clamp(18px,4vw,44px);
-  --font:"IM Fell English","Helvetica Neue",Helvetica,Georgia,serif;
+  --font:"Libre Caslon Text","Helvetica Neue",Helvetica,Georgia,serif;
 }
 
 *{box-sizing:border-box}
