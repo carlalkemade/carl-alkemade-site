@@ -32,7 +32,7 @@ img{display:block;max-width:100%}
 .topbar{
   position:sticky;top:0;z-index:20;
   display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  padding:18px var(--pad);
+  padding:22px var(--pad);
   background:var(--bg);
   border-bottom:1px solid var(--line);
 }
@@ -71,15 +71,15 @@ img{display:block;max-width:100%}
 /* ---- Layout shell -------------------------------------------------------- */
 .view{
   max-width:var(--maxw);margin:0 auto;
-  padding:clamp(20px,3vw,34px) var(--pad) 80px;
+  padding:clamp(40px,7vw,110px) var(--pad) 130px;
   min-height:60vh;
 }
 .empty{color:var(--muted)}
 
 /* ---- Filter bar ---------------------------------------------------------- */
 .filterbar{
-  display:flex;flex-wrap:wrap;gap:18px;justify-content:flex-end;
-  margin:2px 0 26px;
+  display:flex;flex-wrap:wrap;gap:22px;justify-content:flex-end;
+  max-width:1120px;margin:0 auto clamp(56px,8vw,110px);
 }
 .filterbar button{
   background:none;border:0;padding:0;cursor:pointer;font:inherit;
@@ -88,16 +88,17 @@ img{display:block;max-width:100%}
 .filterbar button:hover{color:var(--ink)}
 .filterbar button.on{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 
-/* ---- Project grid — masonry columns (scale50 style): uniform column width,
-       images at natural height, generous even spacing, interspersed order ---- */
+/* ---- Project grid — masonry columns (scale50 style): exactly two columns,
+       uniform column width, natural heights, lots of whitespace, mixed order -- */
 .grid{
-  column-width:340px;                 /* ~scale50 image size; browser fits 1–3 columns */
-  column-gap:clamp(28px,4vw,56px);    /* spacing between columns */
+  max-width:1120px;margin:0 auto;
+  column-count:2;
+  column-gap:clamp(60px,10vw,150px);   /* generous space between the two columns */
 }
 .tile{
   position:relative;display:block;width:100%;
   break-inside:avoid;-webkit-column-break-inside:avoid;
-  margin:0 0 clamp(40px,5vw,80px);    /* spacing between stacked images */
+  margin:0 0 clamp(80px,11vw,150px);    /* generous space between stacked images */
   cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20stroke='%23e00000'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='16'%20y1='3'%20x2='16'%20y2='29'/%3E%3Cline%20x1='3'%20y1='16'%20x2='29'%20y2='16'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair;
 }
 .tile-imgwrap{
