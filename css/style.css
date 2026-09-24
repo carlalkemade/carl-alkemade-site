@@ -11,7 +11,7 @@
   --line-strong:#cfcfcf;
   --maxw:1500px;
   --pad:clamp(18px,4vw,44px);
-  --font:"Libre Caslon Text","Helvetica Neue",Helvetica,Georgia,serif;
+  --font:Consolas,"SF Mono",SFMono-Regular,Menlo,Monaco,"Liberation Mono","Courier New",monospace;
 }
 
 *{box-sizing:border-box}
@@ -37,11 +37,11 @@ img{display:block;max-width:100%}
   border-bottom:1px solid var(--line);
 }
 .brand{
-  font-size:16px;font-weight:600;letter-spacing:.01em;white-space:nowrap;
+  font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
 }
 .topnav{display:flex;align-items:baseline;gap:22px}
 #nav-links{display:flex;gap:22px}
-#nav-links a{color:var(--muted);font-size:13px;letter-spacing:.02em}
+#nav-links a{color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 #nav-links a:hover{color:var(--ink)}
 #nav-links a.active{color:var(--ink)}
 .lang{display:inline-flex;align-items:baseline;gap:6px;font-size:12px;color:var(--muted)}
@@ -65,7 +65,7 @@ img{display:block;max-width:100%}
 .navitem.open .dropdown{display:flex}
 .dropdown-group{display:flex;flex-direction:column;gap:3px}
 .dropdown-cat{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 3px}
-.dropdown a{margin-left:16px;padding:1px 0;font-size:11px;color:#000;white-space:nowrap}
+.dropdown a{margin-left:16px;padding:1px 0;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#000;white-space:nowrap}
 .dropdown a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 
 /* ---- Layout shell -------------------------------------------------------- */
@@ -83,7 +83,7 @@ img{display:block;max-width:100%}
 }
 .filterbar button{
   background:none;border:0;padding:0;cursor:pointer;font:inherit;
-  font-size:13px;color:var(--muted);letter-spacing:.02em;
+  font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
 }
 .filterbar button:hover{color:var(--ink)}
 .filterbar button.on{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
@@ -146,7 +146,7 @@ img{display:block;max-width:100%}
 .project-body,
 .shot figcaption{color:#000}
 .project-side h1{font-size:15.8px;font-weight:400;margin:0 0 4px;line-height:1.5}
-.project-side .project-meta{font-size:9.4px;line-height:1.7;margin:0 0 clamp(16px,2.4vw,24px)}
+.project-side .project-meta{font-size:9.4px;letter-spacing:.1em;text-transform:uppercase;line-height:1.7;margin:0 0 clamp(16px,2.4vw,24px)}
 .project-body{font-size:9.4px;line-height:1.95}
 .project-body p{margin:0 0 14px}
 .shots{display:flex;flex-direction:column;gap:clamp(20px,3vw,40px)}
