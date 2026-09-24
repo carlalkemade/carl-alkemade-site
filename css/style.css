@@ -92,8 +92,8 @@ img{display:block;max-width:100%}
        lot of air; the right column is offset so images don't come in pairs ---- */
 .grid{
   display:flex;
-  gap:clamp(70px,9vw,150px);            /* space between the two columns */
-  margin:0;                              /* hug the left — empty space on the right */
+  gap:clamp(110px,13vw,220px);          /* more space between the two columns */
+  margin:0 0 0 clamp(24px,9vw,180px);   /* shifted a bit toward centre; still open on the right */
 }
 .col{
   display:flex;flex-direction:column;
@@ -217,7 +217,7 @@ img{display:block;max-width:100%}
 @media (max-width:640px){
   .topbar{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:14px}
   .topnav{width:100%;justify-content:space-between}
-  .grid{flex-direction:column;gap:clamp(60px,14vw,90px)}
+  .grid{flex-direction:column;gap:clamp(60px,14vw,90px);margin-left:0}
   .col{width:100%;gap:clamp(60px,14vw,90px)}
   .col-b{margin-top:0}
   .card-img{padding:8px}
