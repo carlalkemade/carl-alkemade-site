@@ -79,7 +79,7 @@ img{display:block;max-width:100%}
 /* ---- Filter bar ---------------------------------------------------------- */
 .filterbar{
   display:flex;flex-wrap:wrap;gap:22px;justify-content:flex-end;
-  max-width:1120px;margin:0 auto clamp(56px,8vw,110px);
+  margin:0 0 clamp(60px,9vw,120px);
 }
 .filterbar button{
   background:none;border:0;padding:0;cursor:pointer;font:inherit;
@@ -88,17 +88,21 @@ img{display:block;max-width:100%}
 .filterbar button:hover{color:var(--ink)}
 .filterbar button.on{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 
-/* ---- Project grid — masonry columns (scale50 style): exactly two columns,
-       uniform column width, natural heights, lots of whitespace, mixed order -- */
+/* ---- Project grid — two small columns, left-aligned (asymmetrical), with a
+       lot of air; the right column is offset so images don't come in pairs ---- */
 .grid{
-  max-width:1120px;margin:0 auto;
-  column-count:2;
-  column-gap:clamp(60px,10vw,150px);   /* generous space between the two columns */
+  display:flex;
+  gap:clamp(70px,9vw,150px);            /* space between the two columns */
+  margin:0;                              /* hug the left — empty space on the right */
 }
+.col{
+  display:flex;flex-direction:column;
+  flex:0 0 auto;width:clamp(200px,24vw,290px);   /* small images */
+  gap:clamp(90px,11vw,170px);           /* lots of air between stacked images */
+}
+.col-b{margin-top:clamp(110px,16vw,240px)}       /* offset so rows never pair up */
 .tile{
   position:relative;display:block;width:100%;
-  break-inside:avoid;-webkit-column-break-inside:avoid;
-  margin:0 0 clamp(80px,11vw,150px);    /* generous space between stacked images */
   cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cg%20stroke='%23e00000'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='16'%20y1='3'%20x2='16'%20y2='29'/%3E%3Cline%20x1='3'%20y1='16'%20x2='29'%20y2='16'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair;
 }
 .tile-imgwrap{
@@ -213,7 +217,9 @@ img{display:block;max-width:100%}
 @media (max-width:640px){
   .topbar{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:14px}
   .topnav{width:100%;justify-content:space-between}
-  .grid{column-width:auto;column-count:1;column-gap:0}
+  .grid{flex-direction:column;gap:clamp(60px,14vw,90px)}
+  .col{width:100%;gap:clamp(60px,14vw,90px)}
+  .col-b{margin-top:0}
   .card-img{padding:8px}
   .cv-list li{grid-template-columns:1fr}
   .cv-place{grid-column:1}
@@ -221,5 +227,5 @@ img{display:block;max-width:100%}
   .project-side{order:-1}
 }
 @media (max-width:420px){
-  .grid{column-count:1}
+  .col{width:100%}
 }

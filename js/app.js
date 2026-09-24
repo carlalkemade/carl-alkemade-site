@@ -140,18 +140,25 @@ function renderWork() {
     .filter((p) => FILTER === "all" || p.category === FILTER)
     .flatMap((p) => p.images.map((im) => ({ p, im })));
   const items = shuffle(all);
-  const tiles = items.map(({ p, im }, i) => {
+  const tileHtml = ({ p, im }, i) => {
     const [cs, rs] = tileSize(i);
     const zoom = Math.min(2.3, Math.max(1.35, 3.6 / Math.sqrt(cs * rs))).toFixed(2);
     return `
       <a class="tile" style="--zoom:${zoom}" href="#/p/${encodeURIComponent(p.slug)}" data-title="${esc(t(p.title))}" data-full="assets/img/${esc(im.src)}-full.jpg">
         <span class="tile-imgwrap"><img loading="lazy" src="assets/img/${esc(im.src)}-thumb.jpg" alt="${esc(t(p.title))}"></span>
       </a>`;
-  }).join("");
+  };
+  // two explicit columns; the right one is offset downward so images never line
+  // up in pairs as you scroll
+  const colA = items.filter((_, i) => i % 2 === 0).map((it, i) => tileHtml(it, i * 2)).join("");
+  const colB = items.filter((_, i) => i % 2 === 1).map((it, i) => tileHtml(it, i * 2 + 1)).join("");
+  const grid = items.length
+    ? `<div class="grid"><div class="col col-a">${colA}</div><div class="col col-b">${colB}</div></div>`
+    : `<div class="grid"><p class="empty">—</p></div>`;
 
   el("view").innerHTML = `
     <div class="filterbar">${filters}</div>
-    <div class="grid">${tiles || `<p class="empty">—</p>`}</div>`;
+    ${grid}`;
 
   el("view").querySelectorAll(".filterbar button").forEach((b) =>
     b.addEventListener("click", () => { FILTER = b.dataset.filter; renderWork(); }));
